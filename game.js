@@ -432,7 +432,10 @@ function spawnFly() {
     const spawnRate = Math.min(0.03 + (scrollSpeed - 2) * 0.005, 0.08);
     const maxFlies = Math.min(3 + Math.floor((scrollSpeed - 2) * 0.5), 8);
     
-    if (Math.random() < spawnRate && flies.length < maxFlies) {
+    // Count only non-collected flies
+    const activeFlies = flies.filter(fly => !fly.collected).length;
+    
+    if (Math.random() < spawnRate && activeFlies < maxFlies) {
         flies.push({
             x: Math.random() * (canvas.width - 100) + 50,
             y: Math.random() * (canvas.height - 200) + 50,
@@ -734,6 +737,7 @@ function updateTongue() {
             if (dist < 25) {
                 // Fly reached frog
                 score += 10;
+                updateScoreDisplay(); // Update display immediately
                 createParticles(tongue.baseX, tongue.baseY, tongue.caughtFly.color, 15);
                 flies = flies.filter(f => f !== tongue.caughtFly);
                 tongue.caughtFly = null;
@@ -749,6 +753,10 @@ function updateTongue() {
         
         // Reset tongue when fully retracted
         if (tongue.length <= 0) {
+            // Remove any caught fly that didn't reach the frog
+            if (tongue.caughtFly) {
+                flies = flies.filter(f => f !== tongue.caughtFly);
+            }
             tongue.state = 'none';
             tongue.length = 0;
             tongue.caughtFly = null;
@@ -833,10 +841,13 @@ function updateFlies() {
         }
     }
     
-    // Remove flies that are collected and off screen
+    // Remove flies that are collected (either off screen or not attached to tongue)
     flies = flies.filter(fly => {
-        if (fly.collected && (fly.x < -50 || fly.x > canvas.width + 50)) {
-            return false;
+        if (fly.collected) {
+            // Remove if off screen or not currently being pulled by tongue
+            if ((fly.x < -50 || fly.x > canvas.width + 50) || tongue.caughtFly !== fly) {
+                return false;
+            }
         }
         return true;
     });
