@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frog Adventure - Lily Pad Hopper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="ui-overlay">
+            <div class="score-display">
+                <span class="score-label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="lives-display">
+                <span class="lives-label">Lives:</span>
+                <span id="lives">3</span>
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="start-screen" id="startScreen">
+            <h1>🐸 Frog Adventure 🐸</h1>
+            <p>Jump across lily pads and catch flies with your sticky tongue!</p>
+            <div class="controls">
+                <p><strong>Controls:</strong></p>
+                <p>🕹️ Arrow Keys or WASD - Move & Jump</p>
+                <p>👅 Space - Shoot Sticky Tongue</p>
+            </div>
+            <button id="startButton">Start Game</button>
+        </div>
+        <div class="game-over-screen" id="gameOverScreen" style="display: none;">
+            <h1>Game Over!</h1>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <button id="restartButton">Play Again</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
+

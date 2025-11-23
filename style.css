@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #98D8C8 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    border: 5px solid #2d5016;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    background: #87CEEB;
+    overflow: hidden;
+}
+
+#gameCanvas {
+    display: block;
+    background: linear-gradient(to bottom, #87CEEB 0%, #4682B4 100%);
+}
+
+.ui-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.score-display, .lives-display {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    color: #2d5016;
+}
+
+.start-screen, .game-over-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+}
+
+.start-screen h1, .game-over-screen h1 {
+    color: #2d5016;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.start-screen p, .game-over-screen p {
+    color: #2d5016;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.controls {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(152, 216, 200, 0.3);
+    border-radius: 10px;
+    text-align: left;
+}
+
+.controls p {
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+
+button {
+    background: linear-gradient(135deg, #98D8C8 0%, #7FB3D3 100%);
+    border: 3px solid #2d5016;
+    color: #2d5016;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
